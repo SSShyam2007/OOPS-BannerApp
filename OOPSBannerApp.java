@@ -1,43 +1,71 @@
 public class OOPSBannerApp {
 
-    public static void main(String[] args) {
+    // Class to store character and its pattern
+    static class CharacterPattern {
+        private char character;
+        private String[] pattern;
 
-        String[] o = createO();
-        String[] p = createP();
-        String[] s = createS();
+        public CharacterPattern(char character, String[] pattern) {
+            this.character = character;
+            this.pattern = pattern;
+        }
 
-        for (int i = 0; i < o.length; i++) {
-            System.out.println(o[i] + "   " + o[i] + "   " + p[i] + "   " + s[i]);
+        public String[] getPattern() {
+            return pattern;
+        }
+
+        public char getCharacter() {
+            return character;
         }
     }
 
-    static String[] createO() {
-        return new String[]{
-                " OOO ",
-                "O   O",
-                "O   O",
-                "O   O",
-                " OOO "
-        };
-    }
+    public static void main(String[] args) {
 
-    static String[] createP() {
-        return new String[]{
-                "PPPP ",
-                "P   P",
-                "PPPP ",
-                "P    ",
-                "P    "
-        };
-    }
+        // Pattern for O
+        CharacterPattern O = new CharacterPattern('O', new String[]{
+                " *** ",
+                "*   *",
+                "*   *",
+                "*   *",
+                "*   *",
+                "*   *",
+                " *** "
+        });
 
-    static String[] createS() {
-        return new String[]{
-                " SSS ",
-                "S    ",
-                " SSS ",
-                "    S",
-                " SSS "
-        };
+        // Pattern for P
+        CharacterPattern P = new CharacterPattern('P', new String[]{
+                "**** ",
+                "*   *",
+                "*   *",
+                "**** ",
+                "*    ",
+                "*    ",
+                "*    "
+        });
+
+        // Pattern for S
+        CharacterPattern S = new CharacterPattern('S', new String[]{
+                " ****",
+                "*    ",
+                "*    ",
+                " *** ",
+                "    *",
+                "    *",
+                "**** "
+        });
+
+        // Banner letters
+        CharacterPattern[] banner = {O, O, P, S};
+
+        // Print banner
+        for (int i = 0; i < 7; i++) {
+            String line = "";
+
+            for (CharacterPattern cp : banner) {
+                line = line + cp.getPattern()[i] + "  ";
+            }
+
+            System.out.println(line);
+        }
     }
 }
